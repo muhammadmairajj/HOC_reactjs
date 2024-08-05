@@ -1,0 +1,26 @@
+// A Higher-Order Component (HOC) for logging or analytics:
+import React, { useEffect } from 'react';
+
+// Higher-Order Component for logging
+const withLogging = (WrappedComponent) => {
+    return (props) => {
+        useEffect(() => {
+            console.log('Component rendered with props:', props);
+        }, [props]);
+
+        return <WrappedComponent {...props} />;
+    };
+};
+
+// You can make separate component of UserProfile
+const UserProfile = ({ user }) => <div>User: {user.name}</div>;
+
+const LoggedUserProfile = withLogging(UserProfile);
+
+const App = () => {
+    const user = { name: 'Jane Doe' };
+
+    return <LoggedUserProfile user={user} />;
+};
+
+export default App;
