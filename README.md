@@ -1,8 +1,8 @@
 # Understanding React Higher-Order Components
 
-#### A higher-order component is a function that takes in a component and returns a new component.
+### A higher-order component is a function that takes in a component and returns a new component.
 
-##### Higher-order components allow developers to reuse code logic in their projects. As a result, this means less repetition and more optimized, readable code.
+#### Higher-order components allow developers to reuse code logic in their projects. As a result, this means less repetition and more optimized, readable code.
 
 
 HOCs in React offer a versatile way to enhance the functionality and behavior of components. They can be applied to various use cases in your application. Here’s a list of common use cases for HOCs:
