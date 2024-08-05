@@ -1,5 +1,6 @@
 import "./App.css";
 import { Button } from "./components/Button";
+import { Parent } from "./components/Parent";
 import { UsersLists } from "./components/UsersList";
 import { withDataFetching } from "./hoc/DataFetchWithHOC";
 import { withStyles } from "./hoc/StylesWithHOC";
@@ -51,7 +52,11 @@ function App() {
       {/* <UserComp /> */}
 
       {/* Styling Example of HOC */}
-      <StyledButton label="Click Me" onClick={handleClick} />
+      {/* <StyledButton label="Click Me" onClick={handleClick} /> */}
+
+      {/* Data Passed from Child to Parent Component */}
+      <h1>Data Passed from Child to Parent Component</h1>
+      <Parent />
     </div>
   );
 }
