@@ -1,24 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Button } from "./components/Button";
+import { UsersLists } from "./components/UsersList";
+import { withDataFetching } from "./hoc/DataFetchWithHOC";
+import { withStyles } from "./hoc/StylesWithHOC";
+// import { DashboardWithAuth } from './components/Dashboard';
+// import Dashboard from './components/Dashboard';
+// import { UserProfileWithCondition } from './components/UserProfile';
+// import UserProfile from './components/UserProfile';
+
+type UserProps = {
+  name?: string;
+  email?: string;
+};
+
+const UserFetch = () =>
+  fetch("https://jsonplaceholder.typicode.com/users").then((res) => res.json());
+const UserComp = withDataFetching(UsersLists, UserFetch);
+
+const StyledButton = withStyles(Button, {
+  backgroundColor: "blue",
+  color: "white",
+  padding: "10px",
+  border: "none",
+  cursor:"pointer",
+  width:"20%"
+});
 
 function App() {
+  const user: UserProps = {
+    name: "Muhammad Mairaj",
+    email: "muhammadmairaj@gmail.com",
+  };
+  // const user: UserProps = {}
+
+  const handleClick = () => {
+    alert('Button clicked!');
+};
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Condition Rendering using HOC */}
+      {/* <UserProfile user={user} /> */}
+      {/* <UserProfileWithCondition user={user} /> */}
+
+      {/* Authentication Example of HOC */}
+      {/* <Dashboard />  */}
+      {/* <DashboardWithAuth /> */}
+
+      {/* Data Fetching Example of HOC */}
+      {/* <UserComp /> */}
+
+      {/* Styling Example of HOC */}
+      <StyledButton label="Click Me" onClick={handleClick} />
     </div>
   );
 }

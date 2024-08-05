@@ -1,0 +1,32 @@
+/* Internationalization (i18n)
+A Higher-Order Component (HOC) for internationalization: */
+
+import React from 'react';
+
+// Higher-Order Component for internationalization
+const withTranslation = (WrappedComponent, translations) => {
+    return (props) => {
+        const { lang } = props;
+        const translate = key => translations[lang][key] || key;
+
+        return <WrappedComponent translate={translate} {...props} />;
+    };
+};
+
+// You can make separate component of Greeting
+const Greeting = ({ translate }) => (
+    <div>{translate('welcome_message')}</div>
+);
+
+const translations = {
+    en: { welcome_message: 'Welcome!' },
+    es: { welcome_message: '¡Bienvenido!' }
+};
+
+const TranslatedGreeting = withTranslation(Greeting, translations);
+
+const App = () => {
+    return <TranslatedGreeting lang="es" />;
+};
+
+export default App;

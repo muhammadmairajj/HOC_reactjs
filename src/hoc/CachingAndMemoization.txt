@@ -1,0 +1,33 @@
+// A Higher-Order Component (HOC) for caching or memoization:
+
+import React from 'react';
+
+// Higher-Order Component for caching
+const withCache = (WrappedComponent) => {
+    const cache = new Map();
+
+    return (props) => {
+        const key = JSON.stringify(props);
+        if (cache.has(key)) {
+            return cache.get(key);
+        }
+
+        const result = <WrappedComponent {...props} />;
+        cache.set(key, result);
+        return result;
+    };
+};
+
+// You can make separate component of this.
+const ExpensiveComponent = ({ value }) => {
+    // Expensive computation here
+    return <div>{value}</div>;
+};
+
+const CachedExpensiveComponent = withCache(ExpensiveComponent);
+
+const App = () => {
+    return <CachedExpensiveComponent value="Some expensive data" />;
+};
+
+export default App;
